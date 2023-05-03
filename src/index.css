@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Sofia Sans', sans-serif;
+}
+
+li:hover,
+a:hover {
+  color: dimgray;
+}
