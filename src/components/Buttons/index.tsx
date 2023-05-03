@@ -9,8 +9,6 @@ import React, {
 
 import * as Styled from './styles';
 import { BUTTON_MAP } from '../../utils/constants';
-// import { buttonClick, calculateResult } from '../../redux/calculator.slice.old';
-import { useAppDispatch } from '../../redux/hooks';
 import { useCalculatorContext } from '../../context/calculator/useCalculatorContext';
 import { evaluator } from '../../utils/cloud-evaluate';
 
@@ -103,7 +101,7 @@ export const Buttons: FC = () => {
           key={i}
           className={className}
           isActive={i === activeBtnIdx}
-          ref={elementsRef.current[i].buttonRef} // fix ts error
+          ref={elementsRef.current[i].buttonRef}
           onClick={() => handleButtonClick(key)}
         >
           {display}

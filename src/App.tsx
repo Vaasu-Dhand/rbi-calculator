@@ -8,7 +8,7 @@ import { HistoryScreen } from './screens/history.screen.tsx';
 import { Navbar } from './components/Navbar';
 import { GlobalStyles } from './utils/globalStyles';
 import { theme } from './utils/theme';
-import { CalculatorContextProvider } from './context/calculator/calculator.context.tsx';
+import { CalculatorContextProvider } from './context/calculator/CalculatorContext.tsx';
 
 const App = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
 import {produce} from 'immer'
 
-import { calculatorReducer } from './calculator.reducer';
+import { calculatorReducer } from './reducer';
 import { CalculatorAction, ICalculatorState } from '../../utils/shared';
 
 const initialState: ICalculatorState = {

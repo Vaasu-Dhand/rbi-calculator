@@ -1,4 +1,3 @@
-// import { ev } from '../../utils/cloud-evaluate';
 import { isNumber } from '../../utils/helper';
 import { CalculatorAction, ICalculatorState } from '../../utils/shared';
 
@@ -39,29 +38,6 @@ export function calculatorReducer(
               ? clickedKey
               : draft.primaryExpression + clickedKey;
           break;
-        // case 'Enter':
-        //   {
-        //     draft.secondaryExpression = draft.primaryExpression;
-        //     const { isError, error, result } = await calculate(
-        //       draft.primaryExpression
-        //     );
-        //     if (isError) {
-        //       draft.isError = true
-        //       console.log('Ran into an issue');
-
-        //       draft.primaryExpression = 'Could not find result';
-        //       // draft.error = error;
-        //     } else {
-        //       draft.isError = false
-        //       draft.primaryExpression = String(result);
-        //     }
-        //     // Code for history
-        //     // draft.history.push({
-        //     //   primaryExpression: draft.primaryExpression,
-        //     //   secondaryExpression: draft.secondaryExpression,
-        //     // });
-        //   }
-        //   break;
         case 'Escape':
           draft.primaryExpression = '';
           draft.secondaryExpression = '0';

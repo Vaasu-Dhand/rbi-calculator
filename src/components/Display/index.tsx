@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
 import * as Styled from './styles';
-import { useAppSelector } from '../../redux/hooks';
 import { useCalculatorContext } from '../../context/calculator/useCalculatorContext';
 
 export const Display: FC = (props) => {
