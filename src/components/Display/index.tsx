@@ -13,9 +13,6 @@ export const Display: FC = () => {
     state: { primaryExpression, secondaryExpression },
   } = useStore((state) => state.calculator);
 
-  console.log(primaryExpression, formatExpression(primaryExpression));
-  
-
   return (
     <Styled.Screen data-testid='display-expression'>
       <Styled.SecondaryScreen data-testid='secondary-expression'>{secondaryExpression}</Styled.SecondaryScreen>

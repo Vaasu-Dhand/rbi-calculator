@@ -6,7 +6,7 @@ type Contexts = {
   calculator: typeof CalculatorContext
 }
 
-// Add more contexts as the application grows
+// Add more contexts as the application grows.
 const contexts: Contexts = {
   calculator: CalculatorContext,
 };

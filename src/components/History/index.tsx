@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, MouseEvent } from 'react';
+import { FC, useState, useCallback, MouseEvent } from 'react';
 
 import * as Styled from './styles';
 import { evaluator } from '../../utils/cloud-evaluate';
@@ -23,8 +23,8 @@ export const History: FC = () => {
 
   return (
     <>
-      <Styled.GenerateBtn onClick={handleOnClick}>Generate</Styled.GenerateBtn>
-      <Styled.CalculationHistory>
+      <Styled.GenerateBtn onClick={handleOnClick} data-testid='generate-history-btn'>Generate</Styled.GenerateBtn>
+      <Styled.CalculationHistory data-testid='history-list'>
         {expressions.map((expression, index) => (
           <Styled.ListItem key={index} onClick={handleExpressionClick}>
             {expression}

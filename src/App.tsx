@@ -1,4 +1,3 @@
-import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
 
@@ -8,12 +7,12 @@ import { HistoryScreen } from './screens/history.screen.tsx';
 import { Navbar } from './components/Navbar';
 import { GlobalStyles } from './utils/globalStyles';
 import { theme } from './utils/theme';
-import { CalculatorContextProvider } from './context/calculator/CalculatorContext.tsx';
+import { AppContextProvider } from './context/AppContext';
 
 const App = () => {
   return (
     <div className="App" data-testid="app">
-      <CalculatorContextProvider>
+      <AppContextProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
           <Navbar />
@@ -22,7 +21,7 @@ const App = () => {
             <Route path="history" element={<HistoryScreen />} />
           </Routes>
         </ThemeProvider>
-      </CalculatorContextProvider>
+      </AppContextProvider>
     </div>
   );
 };

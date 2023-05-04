@@ -3,12 +3,17 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { CalculatorScreen } from '../src/screens/calculator.screen';
+import { AppContextProvider } from '../src/context/AppContext';
 
 const { getAllByTestId, getByTestId } = screen;
 
 describe('CalculatorScreen', () => {
   beforeEach(() => {
-    render(<CalculatorScreen />);
+    render(
+      <AppContextProvider>
+        <CalculatorScreen />
+      </AppContextProvider>
+    );
   });
 
   describe('digits', () => {
@@ -40,9 +45,6 @@ describe('CalculatorScreen', () => {
       const operatorPlus = getByTestId('inputKey-+');
       const primaryScreen = getByTestId('primary-expression');
       // const secondaryScreen = getByTestId('secondary-expression');
-      console.log('comes here');
-
-      console.log(primaryScreen);
 
       fireEvent.click(key2);
       fireEvent.click(operatorPlus);
