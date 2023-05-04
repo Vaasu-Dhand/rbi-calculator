@@ -4,7 +4,7 @@ export const theme: ITheme = {
   grey: '#D9D9D9',
   black: '#000000',
   yellow: '#FFBD3D',
-  gradient: 'linear-gradient(#FF7A00, #FF0000)',
+  gradient: 'linear-gradient(180deg, #FF7A00 0%, #FF0000 100%), #D9D9D9',
 }
 
 export interface ITheme {

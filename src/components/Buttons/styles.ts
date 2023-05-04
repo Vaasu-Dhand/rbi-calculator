@@ -12,7 +12,6 @@ export const Buttons = styled.div`
   height: 100%;
   border-radius: 0 0 20px 20px;
   
-
   & .two-col {
     grid-column: span 2;
     height: 55px;

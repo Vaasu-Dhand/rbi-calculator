@@ -16,11 +16,15 @@ export function calculatorReducer(
   switch (action.type) {
     case 'BUTTON_CLICK':
       switch (action.payload) {
-        case '+':
         case '-':
+          if (endsWithANumber || isPrimaryExpressionEmpty) {
+            draft.primaryExpression = `${draft.primaryExpression} ${clickedKey} `;
+          }
+          break;
+        case '+':
         case '*':
         case '/':
-          if (endsWithANumber || isPrimaryExpressionEmpty) {
+          if (endsWithANumber) {
             draft.primaryExpression = `${draft.primaryExpression} ${clickedKey} `;
           }
           break;

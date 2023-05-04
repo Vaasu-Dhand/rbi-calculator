@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { History } from '../components/History';
 import styled from 'styled-components';
+
+import { History } from '../components/History';
 
 export const HistoryScreen: FC = () => {
   return (

@@ -5,16 +5,21 @@ import { Display } from '../components/Display';
 import { Buttons } from '../components/Buttons';
 export const CalculatorScreen: FC = () => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <CalculatorContainer>
+    <CalculatorContainer>
+      <Calculator>
         <Display />
         <Buttons />
-      </CalculatorContainer>
-    </div>
+      </Calculator>
+    </CalculatorContainer>
   );
 };
 
 const CalculatorContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Calculator = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 20px;

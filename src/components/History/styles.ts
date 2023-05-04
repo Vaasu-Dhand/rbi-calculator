@@ -12,9 +12,9 @@ export const ListItem = styled.li`
 `;
 
 export const GenerateBtn = styled.button`
-  border-radius: 5px;
+  border-radius: 13px;
   border: 0;
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 900;
   padding: 5px 15px;
   cursor: pointer;

@@ -16,7 +16,6 @@ export const Display: FC = () => {
   return (
     <Styled.Screen data-testid='display-expression'>
       <Styled.SecondaryScreen data-testid='secondary-expression'>{secondaryExpression}</Styled.SecondaryScreen>
-      {/* TODO: Should not go past the alloted width */}
       <Styled.PrimaryScreen data-testid='primary-expression'>{formatExpression(primaryExpression)}</Styled.PrimaryScreen>
     </Styled.Screen>
   );

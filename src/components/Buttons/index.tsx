@@ -10,8 +10,8 @@ import React, {
 import * as Styled from './styles';
 import { BUTTON_MAP } from '../../utils/constants';
 import { evaluator } from '../../utils/cloud-evaluate';
-import { useStore } from '../../hooks/useStore';
 import { endsWithANumber } from '../../utils/helper';
+import { useStore } from '../../hooks/useStore';
 
 function removeSpaces(str: string): string {
   return str.replace(/\s+/g, '');
@@ -51,7 +51,7 @@ export const Buttons: FC = () => {
         payload: { isError: false, result },
       });
     } catch (error) {
-      // Handle error for bad expressions
+      // Handle error for bad expressions.
       dispatch({
         type: 'CALCULATE_RESULT_FAIL',
         payload: { isError: true, error: 'Error' },
@@ -59,7 +59,7 @@ export const Buttons: FC = () => {
     }
   }, [dispatch, primaryExpression]);
 
-  // calls calculateResult if the primary expression is valid.
+  // Calls calculateResult if the primary expression is valid.
   const handleEquate = useCallback(() => {
     const shouldCalculateResult =
       primaryExpression.length > 0 && endsWithANumber(primaryExpression);
