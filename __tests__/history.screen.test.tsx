@@ -7,9 +7,9 @@ class MockEvaluator {
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import { act } from 'react-dom/test-utils';
 import { HistoryScreen } from '../src/screens/history.screen';
 import { AppContextProvider } from '../src/context/AppContext';
-import { act } from 'react-dom/test-utils';
 
 jest.mock('cloud-evaluate', () => ({
   Evaluator: MockEvaluator,

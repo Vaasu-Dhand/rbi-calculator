@@ -1,18 +1,30 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+class MockEvaluator {
+  calculate = jest.fn((expression: string) =>
+    Promise.resolve(eval(expression))
+  );
+  generateHistory = jest.fn(() => Promise.resolve(['1+2=3', '4-2=2']));
+}
+
 // @ts-ignore
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+  act,
+  waitFor,
+} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { CalculatorScreen } from '../src/screens/calculator.screen';
 import { AppContextProvider } from '../src/context/AppContext';
-import { Evaluator, IEvaluator } from 'cloud-evaluate';
+
+jest.mock('cloud-evaluate', () => ({
+  Evaluator: MockEvaluator,
+}));
 
 const { getAllByTestId, getByTestId } = screen;
 
 describe('CalculatorScreen', () => {
-  const evaluator: IEvaluator = new Evaluator();
-  // const asyncMock = jest.fn<() => Promise<number>>().mockResolvedValue(43);
-
   beforeEach(() => {
     render(
       <AppContextProvider>
@@ -35,6 +47,11 @@ describe('CalculatorScreen', () => {
         expect(getAllByTestId(`inputKey-${operator}`)).toHaveLength(1);
       });
     });
+
+    it('should render `C` and `=` symbols', () => {
+      expect(getByTestId(`inputKey-C`)).toBeInTheDocument();
+      expect(getByTestId(`inputKey-=`)).toBeInTheDocument();
+    });
   });
 
   describe('expression-display', () => {
@@ -44,7 +61,7 @@ describe('CalculatorScreen', () => {
       expect(getByTestId('primary-expression')).toBeInTheDocument();
     });
 
-    it('should display the expression in the "expression-display"', () => {
+    it('should display the expression in the primary screen as the user CLICKS', () => {
       const key2 = getByTestId('inputKey-2');
       const key4 = getByTestId('inputKey-4');
       const operatorPlus = getByTestId('inputKey-+');
@@ -57,10 +74,53 @@ describe('CalculatorScreen', () => {
       expect(primaryScreen).toHaveTextContent('2 + 4');
     });
 
-    it('should display the expression result after equals in clicked"', async () => {
-      evaluator.calculate = jest.fn().mockResolvedValue(43);
-      const value = await evaluator.calculate('42+1');
-      expect(value).toBe(43);
+    it('should display the expression in the primary screen as the user TYPES', () => {
+      const primaryScreen = getByTestId('primary-expression');
+      act(() => {
+        const event = new KeyboardEvent('keydown', {
+          key: '1',
+          code: 'Digit1',
+        });
+        document.dispatchEvent(event);
+      });
+
+      expect(primaryScreen).toHaveTextContent('1');
+    });
+
+    it('should reset the display after (C) button is clicked', async () => {
+      const key2 = getByTestId('inputKey-2');
+      const key4 = getByTestId('inputKey-4');
+      const operatorPlus = getByTestId('inputKey-+');
+      const clearBtn = getByTestId('inputKey-C');
+      const primaryScreen = getByTestId('primary-expression');
+      const secondaryScreen = getByTestId('secondary-expression');
+
+      fireEvent.click(key2);
+      fireEvent.click(operatorPlus);
+      fireEvent.click(key4);
+      fireEvent.click(clearBtn);
+
+      expect(primaryScreen).toHaveTextContent('');
+      expect(secondaryScreen).toHaveTextContent('0');
+    });
+
+    it('should display the result in secondary display', async () => {
+      const key2 = getByTestId('inputKey-2');
+      const key4 = getByTestId('inputKey-4');
+      const operatorPlus = getByTestId('inputKey-+');
+      const keyEquals = getByTestId('inputKey-=');
+      const secondaryScreen = getByTestId('secondary-expression');
+
+      fireEvent.click(key2);
+      fireEvent.click(operatorPlus);
+      fireEvent.click(key4);
+
+      act(() => {
+        fireEvent.click(keyEquals);
+      });
+      await waitFor(() => {
+        expect(secondaryScreen).toHaveTextContent('6');
+      });
     });
   });
 });
