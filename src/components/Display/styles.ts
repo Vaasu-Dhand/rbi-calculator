@@ -8,7 +8,9 @@ export const Screen = styled.div`
   border-radius: 20px 20px 0 0;
   background: ${({ theme }) => theme.gradient};
   padding: 20px 10px 5px 10px;
+  max-width: 376px;
 `;
+
 
 const screenStyles = css`
   display: flex;
@@ -25,6 +27,7 @@ const screenStyles = css`
 export const PrimaryScreen = styled.div`
   ${screenStyles};
   font-weight: 400;
+  overflow: auto;
 `;
 
 export const SecondaryScreen = styled.div`
@@ -32,4 +35,5 @@ export const SecondaryScreen = styled.div`
   font-size: 40px;
   font-weight: 900;
   margin-top: 40px;
+  overflow: auto;
 `;

@@ -44,7 +44,6 @@ describe('CalculatorScreen', () => {
       const key4 = getByTestId('inputKey-4');
       const operatorPlus = getByTestId('inputKey-+');
       const primaryScreen = getByTestId('primary-expression');
-      // const secondaryScreen = getByTestId('secondary-expression');
 
       fireEvent.click(key2);
       fireEvent.click(operatorPlus);
