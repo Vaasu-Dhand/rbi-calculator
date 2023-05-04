@@ -2,23 +2,19 @@ import { FC } from 'react';
 
 import * as Styled from './styles';
 
-// TODO: Fix: Active classname not working
 export const Navbar: FC = () => {
-  const activeCssClass = ({ isActive }: { isActive: boolean }) => {
-    return isActive ? 'active' : undefined;
-  };
+  const activeCssClass = ({ isActive }: { isActive: boolean }) =>
+    isActive ? 'active' : '';
 
   return (
-    <Styled.List>
-      <li>
-        <Styled.Link to="/" className={activeCssClass}>
-          Calculator
-        </Styled.Link>
-      </li>
+    <Styled.List data-testid='navbar'>
+      <Styled.Link to="/" className={activeCssClass}>
+        Calculator
+      </Styled.Link>
       |
-      <li>
-        <Styled.Link to="history">History</Styled.Link>
-      </li>
+      <Styled.Link to="/history" className={activeCssClass}>
+        History
+      </Styled.Link>
     </Styled.List>
   );
 };

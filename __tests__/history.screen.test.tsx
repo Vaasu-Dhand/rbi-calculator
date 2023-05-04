@@ -27,6 +27,5 @@ describe('HistoryScreen', () => {
     fireEvent.click(generateHistoryBtn);
 
     expect(historyList).toBeEmptyDOMElement();
-
   });
 });

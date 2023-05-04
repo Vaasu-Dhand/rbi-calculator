@@ -13,7 +13,7 @@ export const Link = styled(NavLink)`
   color: ${({theme}: {theme: ITheme}) => theme.black};
   text-decoration: none;
   
-  & .active {
+  &.active {
     text-decoration: underline;
   }
 `
