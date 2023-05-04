@@ -81,8 +81,6 @@ export function calculatorReducer(
           break;
         }
         default:
-          console.error('Action not regonised by reducer!');
-          draft.isError = true;
           break;
       }
       break;

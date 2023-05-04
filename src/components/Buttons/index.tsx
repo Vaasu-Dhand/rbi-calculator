@@ -9,8 +9,8 @@ import React, {
 
 import * as Styled from './styles';
 import { BUTTON_MAP } from '../../utils/constants';
-import { useCalculatorContext } from '../../context/calculator/useCalculatorContext';
 import { evaluator } from '../../utils/cloud-evaluate';
+import { useStore } from '../../hooks/useStore';
 
 function removeSpaces(str: string): string {
   return str.replace(/\s+/g, '');
@@ -20,7 +20,7 @@ export const Buttons: FC = () => {
   const {
     dispatch,
     state: { primaryExpression },
-  } = useCalculatorContext();
+  } = useStore((state) => state.calculator);
 
   console.log(primaryExpression);
 
@@ -39,7 +39,7 @@ export const Buttons: FC = () => {
   const calculateResult = useCallback(async () => {
     try {
       const result = await evaluator.calculate(removeSpaces(primaryExpression));
-      
+
       // API has a 75% chance of working correctly. Handle NaN error.
       if (Number.isNaN(result))
         return dispatch({
@@ -66,7 +66,7 @@ export const Buttons: FC = () => {
         calculateResult();
         return;
       }
-
+      
       dispatch({ type: 'BUTTON_CLICK', payload: btn });
     },
     [calculateResult, dispatch]
@@ -75,6 +75,8 @@ export const Buttons: FC = () => {
   // Handles key binding & triggers animation by setting active button index.
   useEffect(() => {
     const handleKeyPress = ({ key: clickedKey }: { key: string }) => {
+      handleButtonClick(clickedKey);
+
       // Find index of button pressed to fire animation.
       const foundButtonIdx = elementsRef.current.findIndex(
         ({ key: elementKey }) => clickedKey === elementKey
@@ -84,8 +86,6 @@ export const Buttons: FC = () => {
       setTimeout(() => {
         setActiveBtnIdx(null);
       }, 150);
-
-      handleButtonClick(clickedKey);
     };
 
     document.addEventListener('keydown', handleKeyPress);

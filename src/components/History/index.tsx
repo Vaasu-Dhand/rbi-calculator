@@ -2,17 +2,11 @@ import React, { FC, useState, useCallback, MouseEvent } from 'react';
 
 import * as Styled from './styles';
 import { evaluator } from '../../utils/cloud-evaluate';
-import {
-  setPrimaryExpression,
-  setSecondaryExpression,
-} from '../../redux/calculator.slice.old';
-import { useCalculatorContext } from '../../context/calculator/useCalculatorContext';
-
-// import { useAppDispatch } from '../../redux/hooks';
+import {useStore} from '../../hooks/useStore'
 
 export const History: FC = () => {
   const [expressions, setExpressions] = useState<string[]>([]);
-  const {dispatch} = useCalculatorContext()
+  const {dispatch} = useStore(state => state.calculator)
 
   const handleOnClick = useCallback(async () => {
     const history = await evaluator.generateHistory();
@@ -23,9 +17,7 @@ export const History: FC = () => {
     const { innerText } = event.currentTarget;
     const [primaryExpression, secondaryExpression] = innerText.split('=');
 
-    // dispatch(setPrimaryExpression(primaryExpression));
     dispatch({type: 'SET_PRIMARY_EXPRESSION', payload: primaryExpression});
-    // dispatch(setSecondaryExpression(secondaryExpression));
     dispatch({type: 'SET_SECONDARY_EXPRESSION', payload: secondaryExpression});
   };
 

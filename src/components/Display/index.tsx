@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
 import * as Styled from './styles';
-import { useCalculatorContext } from '../../context/calculator/useCalculatorContext';
+import { useStore } from '../../hooks/useStore';
 
 export const Display: FC = (props) => {
   const {
     state: { primaryExpression, secondaryExpression },
-  } = useCalculatorContext();
+  } = useStore((state) => state.calculator);
 
   console.log(props);
   return (

@@ -2,15 +2,16 @@
   "name": "assignment",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@testing-library/react": "^11.2.5",
     "axios": "^0.21.1",
     "cloud-evaluate": "1.4.0",
     "immer": "^8.0.1",
@@ -31,6 +32,8 @@
     "use-immer": "^0.4.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-typescript": "^7.21.5",
     "@types/escape-html": "^1.0.0",
     "@types/jest": "^26.0.20",
     "@types/lodash": "^4.14.168",
