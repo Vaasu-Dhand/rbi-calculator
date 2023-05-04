@@ -1,13 +1,18 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { CalculatorScreen } from '../src/screens/calculator.screen';
 import { AppContextProvider } from '../src/context/AppContext';
+import { Evaluator, IEvaluator } from 'cloud-evaluate';
 
 const { getAllByTestId, getByTestId } = screen;
 
 describe('CalculatorScreen', () => {
+  const evaluator: IEvaluator = new Evaluator();
+  // const asyncMock = jest.fn<() => Promise<number>>().mockResolvedValue(43);
+
   beforeEach(() => {
     render(
       <AppContextProvider>
@@ -50,6 +55,12 @@ describe('CalculatorScreen', () => {
       fireEvent.click(key4);
 
       expect(primaryScreen).toHaveTextContent('2 + 4');
+    });
+
+    it('should display the expression result after equals in clicked"', async () => {
+      evaluator.calculate = jest.fn().mockResolvedValue(43);
+      const value = await evaluator.calculate('42+1');
+      expect(value).toBe(43);
     });
   });
 });
