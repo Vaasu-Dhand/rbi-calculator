@@ -11,6 +11,7 @@ import * as Styled from './styles';
 import { BUTTON_MAP } from '../../utils/constants';
 import { evaluator } from '../../utils/cloud-evaluate';
 import { useStore } from '../../hooks/useStore';
+import { endsWithANumber } from '../../utils/helper';
 
 function removeSpaces(str: string): string {
   return str.replace(/\s+/g, '');
@@ -39,11 +40,12 @@ export const Buttons: FC = () => {
       const result = await evaluator.calculate(removeSpaces(primaryExpression));
 
       // API has a 75% chance of working correctly. Handle NaN error.
-      if (Number.isNaN(result))
+      if (Number.isNaN(result)) {
         return dispatch({
           type: 'CALCULATE_RESULT_FAIL',
           payload: { isError: true, error: 'Error' },
         });
+      }
       dispatch({
         type: 'CALCULATE_RESULT_SUCCESS',
         payload: { isError: false, result },
@@ -57,17 +59,24 @@ export const Buttons: FC = () => {
     }
   }, [dispatch, primaryExpression]);
 
+  // calls calculateResult if the primary expression is valid.
+  const handleEquate = useCallback(() => {
+    const shouldCalculateResult =
+      primaryExpression.length > 0 && endsWithANumber(primaryExpression);
+    if (shouldCalculateResult) calculateResult();
+  }, [primaryExpression, calculateResult]);
+
   // Dispatches appropriate action based on the button clicked.
   const handleButtonClick = useCallback(
     (btn: string) => {
       if (btn === 'Enter') {
-        calculateResult();
+        handleEquate();
         return;
       }
-      
+
       dispatch({ type: 'BUTTON_CLICK', payload: btn });
     },
-    [calculateResult, dispatch]
+    [dispatch, handleEquate]
   );
 
   // Handles key binding & triggers animation by setting active button index.

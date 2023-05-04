@@ -11,6 +11,7 @@ export function calculatorReducer(
   );
   const endsWithWhiteSpace = lastCharacter === ' ';
   const endsWithANumber = isNumber(lastCharacter);
+  const isPrimaryExpressionEmpty = draft.primaryExpression.length === 0;
 
   switch (action.type) {
     case 'BUTTON_CLICK':
@@ -19,7 +20,7 @@ export function calculatorReducer(
         case '-':
         case '*':
         case '/':
-          if (endsWithANumber) {
+          if (endsWithANumber || isPrimaryExpressionEmpty) {
             draft.primaryExpression = `${draft.primaryExpression} ${clickedKey} `;
           }
           break;
@@ -44,7 +45,10 @@ export function calculatorReducer(
           draft.isError = false;
           break;
         case '.': {
-          if (!endsWithANumber) return;
+          if (!endsWithANumber) {
+            draft.primaryExpression = draft.primaryExpression.concat('0.');
+            return;
+          }
           const expressionArray = draft.primaryExpression.split(' ');
           const lastEntity = expressionArray[expressionArray.length - 1];
 
