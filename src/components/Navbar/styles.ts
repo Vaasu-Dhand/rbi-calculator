@@ -7,6 +7,7 @@ export const List = styled.ul`
   display: flex;
   list-style: none;
   gap: 10px;
+  flex-wrap: wrap;
 `
 
 export const Link = styled(NavLink)`

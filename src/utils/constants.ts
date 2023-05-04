@@ -1,8 +1,8 @@
-function getButton(display: string, key: string = display, className?: string) {
+function getButton(display: string, className?: string, key: string = display) {
   return {
     display,
-    key,
     className,
+    key,
     testId: `inputKey-${display}`,
   };
 }
@@ -15,38 +15,38 @@ function getButton(display: string, key: string = display, className?: string) {
 // ['0', '.', '=', '='],
 export const BUTTON_MAP: IButton[][] = [
   [
-    getButton('C', 'Escape', 'two-col is-symbol'),
-    getButton('', '', 'hide'),
-    getButton('÷', '/', 'is-symbol'),
+    getButton('C', 'two-col symbol', 'Escape'),
+    getButton('', 'hide'),
+    getButton('÷', 'symbol', '/'),
   ],
   [
-    getButton('1'),
-    getButton('2'),
-    getButton('3'),
-    getButton('x', '*', 'is-symbol'),
+    getButton('1', 'number'),
+    getButton('2', 'number'),
+    getButton('3', 'number'),
+    getButton('x', 'symbol', '*'),
   ],
   [
-    getButton('4'),
-    getButton('5'),
-    getButton('6'),
-    getButton('+', '+', 'is-symbol'),
+    getButton('4', 'number'),
+    getButton('5', 'number'),
+    getButton('6', 'number'),
+    getButton('+', 'symbol'),
   ],
   [
-    getButton('7'),
-    getButton('8'),
-    getButton('9'),
-    getButton('-', '-', 'is-symbol'),
+    getButton('7', 'number'),
+    getButton('8', 'number'),
+    getButton('9', 'number'),
+    getButton('-', 'symbol'),
   ],
   [
-    getButton('0'),
-    getButton('.'),
-    getButton('=', 'Enter', 'two-col equals is-symbol'),
+    getButton('0', 'number'),
+    getButton('.', 'decimal'),
+    getButton('=', 'two-col equals symbol', 'Enter', ),
   ],
 ];
 
 interface IButton {
   display: string;
-  key: string;
   className?: string;
+  key: string;
   testId: string;
 }

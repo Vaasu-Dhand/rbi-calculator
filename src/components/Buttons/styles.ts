@@ -19,6 +19,23 @@ export const Buttons = styled.div`
   & .hide {
     visibility: hidden;
   }
+
+  @media (max-width: 400px) {
+    border: 2px solid red;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+
+    & .hide {
+      display: none;
+    }
+    .equals {
+      grid-row-end: -1;
+    }
+
+  @media (max-width: 200px) {
+    padding: 10px 20px;
+
+  }
 `;
 
 const clickStyles = () => css`
@@ -39,7 +56,7 @@ export const Button = styled.button<IButtonProps>`
   border: none;
   border-radius: 50px;
 
-  &.is-symbol {
+  &.symbol {
     background: ${({ theme }) => theme.grey};
   }
   &.equals {
@@ -53,7 +70,7 @@ export const Button = styled.button<IButtonProps>`
     background: ${({ theme }) => theme.yellow};
   }
   :active {
-    ${clickStyles}/* transition: all 0.25s ease-in; */
+    ${clickStyles}
   }
 
   ${(props) => {
