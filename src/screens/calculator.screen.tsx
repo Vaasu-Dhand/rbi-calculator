@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { Display } from '../components/Display';
 import { Buttons } from '../components/Buttons';
-export const CalculatorScreen: FC = (props) => {
+export const CalculatorScreen: FC = () => {
   
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>

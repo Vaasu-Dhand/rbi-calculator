@@ -4,4 +4,4 @@ export interface ICalculatorState {
   isError: boolean;
 }
 
-export type CalculatorAction = { type: string; payload?: string | object };
+export type CalculatorAction = { type: string; payload?: string | any };
