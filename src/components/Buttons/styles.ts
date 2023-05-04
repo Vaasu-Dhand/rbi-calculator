@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Buttons = styled.div`
   padding: 20px 30px;
@@ -9,8 +9,8 @@ export const Buttons = styled.div`
   justify-content: center;
   grid-gap: 10px;
   background: ${({ theme }) => theme.white};
-  border-radius: 0 0 50px 50px;
   height: 100%;
+  border-radius: 0 0 20px 20px;
 
   & .two-col {
     grid-column: span 2;
@@ -19,12 +19,6 @@ export const Buttons = styled.div`
   & .hide {
     visibility: hidden;
   }
-
-  /* Media Queries */
-
-  /* @media (max-width: 600px) {
-    grid-template-columns: repeat(3, 1fr);
-  } */
 `;
 
 const clickStyles = () => css`
@@ -59,13 +53,12 @@ export const Button = styled.button<IButtonProps>`
     background: ${({ theme }) => theme.yellow};
   }
   :active {
-    ${clickStyles}
-    /* transition: all 0.25s ease-in; */
+    ${clickStyles}/* transition: all 0.25s ease-in; */
   }
 
-${(props) => {
-  if (props.isActive) {
-    return clickStyles;
-  }
-}}
+  ${(props) => {
+    if (props.isActive) {
+      return clickStyles;
+    }
+  }}
 `;

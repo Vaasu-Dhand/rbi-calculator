@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Display } from '../components/Display';
 import { Buttons } from '../components/Buttons';
 export const CalculatorScreen: FC = () => {
-  
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <CalculatorContainer>
@@ -18,12 +17,6 @@ export const CalculatorScreen: FC = () => {
 const CalculatorContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-
-  @media (min-width: 500px) {
-    width: 75%;
-  }
-  @media (min-width: 600px) {
-    width: 50%;
-  }
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
