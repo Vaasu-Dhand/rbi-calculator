@@ -3,17 +3,24 @@ import { FC } from 'react';
 import * as Styled from './styles';
 import { useStore } from '../../hooks/useStore';
 
-export const Display: FC = (props) => {
+function formatExpression(expression: string): string {
+  const formattedExpr = expression.replace(/\*/g, 'x').replace(/\//g, '÷');
+  return formattedExpr;
+}
+
+export const Display: FC = () => {
   const {
     state: { primaryExpression, secondaryExpression },
   } = useStore((state) => state.calculator);
 
-  console.log(props);
+  console.log(primaryExpression, formatExpression(primaryExpression));
+  
+
   return (
-    <Styled.Screen>
-      {/* TODO: Both of these would format big numbers */}
-      <Styled.SecondaryScreen>{secondaryExpression}</Styled.SecondaryScreen>
-      <Styled.PrimaryScreen>{primaryExpression}</Styled.PrimaryScreen>
+    <Styled.Screen data-testid='display-expression'>
+      <Styled.SecondaryScreen data-testid='secondary-expression'>{secondaryExpression}</Styled.SecondaryScreen>
+      {/* TODO: Should not go past the alloted width */}
+      <Styled.PrimaryScreen data-testid='primary-expression'>{formatExpression(primaryExpression)}</Styled.PrimaryScreen>
     </Styled.Screen>
   );
 };

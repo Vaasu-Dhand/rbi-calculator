@@ -5,8 +5,8 @@ import { calculatorReducer } from './reducer';
 import { CalculatorAction, ICalculatorState } from '../../utils/shared';
 
 const initialState: ICalculatorState = {
-  primaryExpression: '0',
-  secondaryExpression: '',
+  primaryExpression: '',
+  secondaryExpression: '0',
   isError: false,
 };
 

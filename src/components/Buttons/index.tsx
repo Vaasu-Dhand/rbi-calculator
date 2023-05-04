@@ -22,8 +22,6 @@ export const Buttons: FC = () => {
     state: { primaryExpression },
   } = useStore((state) => state.calculator);
 
-  console.log(primaryExpression);
-
   type ButtonRef = React.RefObject<HTMLButtonElement>;
 
   const [activeBtnIdx, setActiveBtnIdx] = useState<number | null>(null);
@@ -96,11 +94,12 @@ export const Buttons: FC = () => {
 
   return (
     <Styled.Buttons>
-      {BUTTON_MAP.flat().map(({ display, key, className }, i) => (
+      {BUTTON_MAP.flat().map(({ display, key, className, testId }, i) => (
         <Styled.Button
           key={i}
           className={className}
           isActive={i === activeBtnIdx}
+          data-testid={testId}
           ref={elementsRef.current[i].buttonRef}
           onClick={() => handleButtonClick(key)}
         >

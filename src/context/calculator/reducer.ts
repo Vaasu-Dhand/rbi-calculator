@@ -56,8 +56,6 @@ export function calculatorReducer(
           break;
         }
         case 'Backspace': {
-          console.log('comes hee');
-
           const hasOnlyOneCharacter = draft.primaryExpression.length === 1;
 
           // Return '0' if there's only one character in the expression.

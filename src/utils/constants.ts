@@ -3,6 +3,7 @@ function getButton(display: string, key: string = display, className?: string) {
     display,
     key,
     className,
+    testId: `inputKey-${display}`,
   };
 }
 
@@ -18,14 +19,34 @@ export const BUTTON_MAP: IButton[][] = [
     getButton('', '', 'hide'),
     getButton('÷', '/', 'is-symbol'),
   ],
-  [getButton('1'), getButton('2'), getButton('3'), getButton('x', '*', 'is-symbol')],
-  [getButton('4'), getButton('5'), getButton('6'), getButton('+', '+', 'is-symbol')],
-  [getButton('7'), getButton('8'), getButton('9'), getButton('-', '-', 'is-symbol')],
-  [getButton('0'), getButton('.'), getButton('=', 'Enter', 'two-col equals is-symbol')],
+  [
+    getButton('1'),
+    getButton('2'),
+    getButton('3'),
+    getButton('x', '*', 'is-symbol'),
+  ],
+  [
+    getButton('4'),
+    getButton('5'),
+    getButton('6'),
+    getButton('+', '+', 'is-symbol'),
+  ],
+  [
+    getButton('7'),
+    getButton('8'),
+    getButton('9'),
+    getButton('-', '-', 'is-symbol'),
+  ],
+  [
+    getButton('0'),
+    getButton('.'),
+    getButton('=', 'Enter', 'two-col equals is-symbol'),
+  ],
 ];
 
 interface IButton {
   display: string;
   key: string;
   className?: string;
+  testId: string;
 }
