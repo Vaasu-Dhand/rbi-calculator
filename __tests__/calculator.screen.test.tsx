@@ -104,7 +104,7 @@ describe('CalculatorScreen', () => {
       expect(secondaryScreen).toHaveTextContent('0');
     });
 
-    it('should display the result in secondary display', async () => {
+    it('should display correct result for add operand', async () => {
       const key2 = getByTestId('inputKey-2');
       const key4 = getByTestId('inputKey-4');
       const operatorPlus = getByTestId('inputKey-+');
@@ -120,6 +120,63 @@ describe('CalculatorScreen', () => {
       });
       await waitFor(() => {
         expect(secondaryScreen).toHaveTextContent('6');
+      });
+    });
+
+    it('should display correct result for subtract operand', async () => {
+      const key2 = getByTestId('inputKey-2');
+      const key4 = getByTestId('inputKey-4');
+      const operatorSubtract = getByTestId('inputKey--');
+      const keyEquals = getByTestId('inputKey-=');
+      const secondaryScreen = getByTestId('secondary-expression');
+
+      fireEvent.click(key2);
+      fireEvent.click(operatorSubtract);
+      fireEvent.click(key4);
+
+      act(() => {
+        fireEvent.click(keyEquals);
+      });
+      await waitFor(() => {
+        expect(secondaryScreen).toHaveTextContent('-2');
+      });
+    });
+
+    it('should display correct result for add operand', async () => {
+      const key2 = getByTestId('inputKey-2');
+      const key4 = getByTestId('inputKey-4');
+      const operatorMultiply = getByTestId('inputKey-x');
+      const keyEquals = getByTestId('inputKey-=');
+      const secondaryScreen = getByTestId('secondary-expression');
+
+      fireEvent.click(key2);
+      fireEvent.click(operatorMultiply);
+      fireEvent.click(key4);
+
+      act(() => {
+        fireEvent.click(keyEquals);
+      });
+      await waitFor(() => {
+        expect(secondaryScreen).toHaveTextContent('8');
+      });
+    });
+
+    it('should display correct result for division operand', async () => {
+      const key6 = getByTestId('inputKey-6');
+      const key3 = getByTestId('inputKey-3');
+      const operatorDivide = getByTestId('inputKey-÷');
+      const keyEquals = getByTestId('inputKey-=');
+      const secondaryScreen = getByTestId('secondary-expression');
+
+      fireEvent.click(key6);
+      fireEvent.click(operatorDivide);
+      fireEvent.click(key3);
+
+      act(() => {
+        fireEvent.click(keyEquals);
+      });
+      await waitFor(() => {
+        expect(secondaryScreen).toHaveTextContent('2');
       });
     });
   });

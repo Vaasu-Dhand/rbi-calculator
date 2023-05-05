@@ -84,4 +84,4 @@ const {foo, bar} = useStore(state => state.contextName)
 - `Backspace`: Delete
 
 ## Author
-- Vaasu Dhand
+Vaasu Dhand
